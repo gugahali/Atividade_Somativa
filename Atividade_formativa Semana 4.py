@@ -5,7 +5,7 @@ Curso: Analise e Desenvolvimento de Sistemas (ADS)
 
 '''
 #Criação de uma Matriz contendo 5 listas vazias e adicionando na variavel "faculdade"
-faculdade = [[],[],[],[],[]]
+faculdade = [[]]
 
 #Começa uma Estrutura de repetição com While True
 while True :

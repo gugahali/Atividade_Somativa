@@ -1,13 +1,29 @@
 import sqlite3
+from tkinter import messagebox
+
+class Registro_De_Alunos:
+        def __init__(self):
+            self.connect = sqlite3.connect('Estudantes.db')
+            self.c = self.connect.cursor()
+            self.create_table()
+        
+        def criar_tabela(self):
+            self.c.execute(''' CREATE TABLE IF NOT EXIST Alunos(
+                                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                                nome TEXT NOT NULL,
+                                turma TEXT NOT NULL,
+                                matricula TEXT NOT NULL
+                                telefone INT NOT NULL)''')
+
+        def registrar_aluno(self,Alunos):
+            self.c.execute(''' INSERT INTO Alunos(nome, turma, matricula, telefone) VALUES (?,?,?,?)'''(Alunos))
+            self.connect.commit
+
+            messagebox.showinfo('Adicionado com Sucesso','Registrado com sucesso')
+
 
 conexao = sqlite3.connect('Estudantes.db')
 cursor = conexao.cursor()
-
-#Criação da Tabela Dos Dados
-#cursor.execute (''' CREATE TABLE Estudantes (
-#                    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-#                    nome TEXT NOT NULL);''')    
-
 
 faculdade = [[],[],[],[],[]]
 
@@ -47,7 +63,7 @@ while True :
                     cursor.execute(''' SELECT * FROM Estudantes ''')
                     tabela = cursor.fetchall()
                     for linha in tabela:
-                        print('-',linha)
+                        print('\n-',linha,'\n')
                 input("Pressione ENTER para voltar ao menu de operações")
 
             elif opção ==3:

@@ -46,13 +46,13 @@ class Registro_De_Alunos:
             self.connect.commit()
             messagebox.showinfo('Sucesso',f'O Estudante com ID:{id} Foi Deletado')
 
+estudante_gustavo = ('12', '65312341', '13566', '1515', 'asgagasd16')
 sistema_de_registro = Registro_De_Alunos()
-
-
-
-faculdade = [[],[],[],[],[]]
-
+sistema_de_registro.register_student(estudante_gustavo)
+sistema_de_registro.Students_data()
+'''
 while True :
+    sistema_de_registro = Registro_De_Alunos()
     menu_princ = int(input("------ Menu Principal -----\n (1) Verificar Estudantes \n (2) Verificar Professores \n (3) Verificar Disciplinas \n (4) Verificar Turmas \n (5) Verificar Matriculas \n (8) Sair \n Opção Selecionada: "))
     
     if (menu_princ) not in [1,2,3,4,5,0] :
@@ -73,23 +73,13 @@ while True :
                 matricula_estudante = str(input('Qual o CPF do Estudante?'))
                 tel_estudante = str(input('Qual o Telefone do Estudante?'))
                 email_estudante = str(input('Qual o Email do Estudante?'))
-                estudante_dados = (nome_estudante, turma_estudante, matricula_estudante, tel_estudante, email_estudante)
-                print(estudante_dados)
+                estudante_dados = ('321', '651641', '13566', '1515', '1616')
+                sistema_de_registro = Registro_De_Alunos()
                 sistema_de_registro.register_student(estudante_dados)
-                sistema_de_registro.Students_data()
-                print('\nEstudante {} Adicionado'.format(nome_estudante))
-                input("Pressione ENTER para voltar ao menu de operações") 
                        
-'''
+
             elif opção == 2:
-                print('---Preparando Lista de Estudantes---')
-                with sqlite3.connect('Estudantes.db') as conexao:
-                    cursor = conexao.cursor()
-                    cursor.execute('' SELECT * FROM Estudantes '')
-                    tabela = cursor.fetchall()
-                    for linha in tabela:
-                        print('\n-',linha,'\n')
-                input("Pressione ENTER para voltar ao menu de operações")
+                sistema_de_registro.Students_data()
 
             elif opção ==3:
                  with sqlite3.connect('Estudantes.db') as conexao:

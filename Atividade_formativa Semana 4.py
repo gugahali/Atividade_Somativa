@@ -46,10 +46,8 @@ class Registro_De_Alunos:
             self.connect.commit()
             messagebox.showinfo('Sucesso',f'O Estudante com ID:{id} Foi Deletado')
 
-estudante_gustavo = ('12', '65312341', '13566', '1515', 'asgagasd16')
-sistema_de_registro = Registro_De_Alunos()
-sistema_de_registro.register_student(estudante_gustavo)
-sistema_de_registro.Students_data()
+
+
 '''
 while True :
     sistema_de_registro = Registro_De_Alunos()
@@ -67,19 +65,20 @@ while True :
                 print('Por Favor Digite um Valor pdo menu de Operações')
 
             if opção == 1:
-                print('---Incluir Estudante---')       
+                print('---Incluir Estudante---')
                 nome_estudante = str(input('Qual o Nome do Estudante?'))
                 turma_estudante = str(input('Qual a Turma do Estudante?'))
                 matricula_estudante = str(input('Qual o CPF do Estudante?'))
                 tel_estudante = str(input('Qual o Telefone do Estudante?'))
                 email_estudante = str(input('Qual o Email do Estudante?'))
-                estudante_dados = ('321', '651641', '13566', '1515', '1616')
+                estudante_dados = (nome_estudante, turma_estudante, matricula_estudante, tel_estudante, email_estudante)
                 sistema_de_registro = Registro_De_Alunos()
                 sistema_de_registro.register_student(estudante_dados)
                        
 
             elif opção == 2:
                 sistema_de_registro.Students_data()
+
 
             elif opção ==3:
                  with sqlite3.connect('Estudantes.db') as conexao:

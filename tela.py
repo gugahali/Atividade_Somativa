@@ -50,7 +50,7 @@ frame_tabela.grid(row=3,column=0,padx=10,pady=0, sticky=NSEW,columnspan=5)
 #trabalhando na logo
 global image, image_string, l_image
 
-app_lg = Image.open('App_logo.jpg')
+app_lg = Image.open('App.logo.certo.png')
 app_lg = app_lg.resize((50,50))
 app_lg = ImageTk.PhotoImage(app_lg)
 app_logo = Label(frame_logo, image=app_lg, text='Sistema de registro de Alunos', width=850 , compound=LEFT, anchor= NW, font=('Verdana 15'), bg=co6, fg=co1)
@@ -74,12 +74,79 @@ e_matricula = Entry(frame_detalhes, width=15, justify= 'left', relief=SOLID)
 e_matricula.place(x=7, y=160)
 
 l_turma = Label(frame_detalhes,  text= 'Turma *', anchor= NW, font=('Ivy 10'), bg=co1, fg=co6)
-l_turma.place(x=30,y=190)
+l_turma.place(x=127,y=130)
+cbb_turma = ttk.Combobox(frame_detalhes, width=7, font=('Ivy 8 bold') ,justify= 'center')
+cbb_turma['values'] = '3A', '3B', '3C', '3D'
+cbb_turma.place(x=130, y=160)
+
+l_tel = Label(frame_detalhes, text= 'Telefone', anchor=NW, font=('Ivy 10'), bg=co1, fg=co6)
+l_tel.place(x= 230,y=10)
+e_tel = Entry(frame_detalhes, width= 30, justify='left', relief=SOLID)
+e_tel.place(x=230,y=40)
+
+l_endereço = Label(frame_detalhes,  text= 'Endereço', anchor= NW, font=('Ivy 10'), bg=co1, fg=co6)
+l_endereço.place(x=230,y=70)
+e_endereço = Entry(frame_detalhes, width=30, justify= 'left', relief=SOLID)
+e_endereço.place(x=230, y=100)
+
+cursos= ['T.I.','ADS','ADM','Marketing']
+
+l_cursos = Label(frame_detalhes,  text= 'Cursos', anchor= NW, font=('Ivy 10'), bg=co1, fg=co6)
+l_cursos.place(x=230,y=130)
+cbb_cursos = ttk.Combobox(frame_detalhes, width=15, justify= 'left', font=('Ivy 8 bold'))
+cbb_cursos['values'] = cursos
+cbb_cursos.place(x=230, y=160)
+
+def mostrar():
+
+    # creating a treeview with dual scrollbars
+    list_header = ['id','Nome', 'Email', 'Turma', 'Curso','Matricula', 'telefone',]
+    
+    def_list = []
+
+    global tree
+
+    tree = ttk.Treeview(frame_tabela, selectmode="extended",
+                        columns=list_header, show="headings")
+    # vertical scrollbar
+    vsb = ttk.Scrollbar(
+        frame_tabela, orient="vertical", command=tree.yview)
+    # horizontal scrollbar
+    hsb = ttk.Scrollbar(
+        frame_tabela, orient="horizontal", command=tree.xview)
+
+    tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+
+    tree.grid(column=0, row=0, sticky='nsew')
+    vsb.grid(column=1, row=0, sticky='ns')
+    hsb.grid(column=0, row=1, sticky='ew')
+
+    hd=["nw","nw","nw","nw","nw","nw","nw"]
+    h=[10,120,50,50,80,120,200]
+    n=0
+
+    # tree cabecalho
+    tree.heading(0,text='Id', anchor=NW)
+    tree.heading(1,text='Nome', anchor=NW)
+    tree.heading(2,text='Email', anchor=NW)
+    tree.heading(3,text='Turma', anchor=NW)
+    tree.heading(4,text='Curso', anchor=NW)
+    tree.heading(5,text='Matricula', anchor=NW)
+    tree.heading(6,text='Telefone', anchor=NW)
+    
+
+    # tree  corpo
+    tree.column(0, width=50,anchor='nw')
+    tree.column(1, width=140,anchor='nw')
+    tree.column(2, width=140,anchor='nw')
+    tree.column(3, width=80,anchor='nw')
+    tree.column(4, width=80,anchor='nw')
+    tree.column(5, width=140,anchor=hd[0])
+    tree.column(6, width=140,anchor=hd[0])
 
 
 
 
-
-
+mostrar()
 
 janela.mainloop()
